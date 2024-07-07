@@ -7,6 +7,8 @@
     "deque": "cpp",
     "list": "cpp",
     "string": "cpp",
-    "vector": "cpp"
+    "vector": "cpp",
+    "source_location": "cpp",
+    "unordered_map": "cpp"
   }
 }

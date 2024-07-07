@@ -17,31 +17,51 @@
 #include <iomanip>
 using namespace std;
 #define rep(i, a, b) for (int i = a; i < b; ++i)
-
+#define ll long long
+bool cmp(pair<int,int>a,pair<int,int>b){
+    return a.first<b.first;
+}
 void solve(){
-    int a,b;
+    ll a,b;
     cin>>a>>b;
-    vector<int>arr1(a),arr2(a);
-    for(int i=0;i<a;i++){
+    vector<ll>arr1(a),arr2(a);
+    vector<pair<ll,ll> >v(a);
+    for(ll i=0;i<a;i++){
      cin>>arr1[i];   
     }
-    for(int i=0;i<a;i++){
+    for(ll i=0;i<a;i++){
      cin>>arr2[i];   
     }
-    std::priority_queue<int> mh;
-    for(int i=0;i<b;b++){
-        int t;
+    for(ll i=0;i<a;i++){
+       v[i] = make_pair(arr1[i] - arr2[i], arr1[i]);
+    }
+    sort(v.begin(),v.end(),cmp);
+
+    std::priority_queue<ll> mh;
+    for(ll i=0;i<b;i++){
+        ll t;
         cin>>t;
         mh.push(t);
     }
+    ll ans=0;
+   for(ll i=0;i<a;i++){
+    while (mh.top()>=v[i].second)
+    {
+        ll temp=mh.top();
+        mh.pop();
+        ll diff=temp-v[i].second;
+        ll n_=diff/v[i].first;
+        ll rem=diff%v[i].first;
+        ans+=n_*2+2;
+        temp=v[i].second+rem-v[i].first;
+        
+
+        mh.push(temp);
+        
+    }
     
-    vector<int>diff(a);
-    for(int i=0;i<a;i++){
-        diff[i]=arr1[i]-arr2[i];
-    }
-    for(int i=0;i<a;i++){
-        while()
-    }
+   }
+   cout<<ans<<endl;
 }
 
 
